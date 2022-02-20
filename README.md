@@ -28,3 +28,12 @@
     - 데이터베이스 DDL(Data Definition Language, 데이터 정의어) 파일
 3. index.php
     - Main 실행 파일
+
+### 프로그램 실행 방법
+
+1. PHP 내장서버 사용
+    - Terminal에서 프로젝트 디렉토리로 이동 후 아래 명령어를 입력
+   ```bash
+   # cd {WORKSPACE}
+   # php -S localhost:{PORT} -t public
+   ```
