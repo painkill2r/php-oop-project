@@ -1,0 +1,10 @@
+{
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  },
+  "require": {
+    "painkill2r/inflearn-lecture-lib": "^0.0.1"
+  }
+}
