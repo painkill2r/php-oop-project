@@ -1,5 +1,4 @@
 <?php $_SESSION['CSRF_TOKEN'] = bin2hex(random_bytes(32)); ?>
-
 <!DOCTYPE html>
 <html lang="ko">
     <head>
