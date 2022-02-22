@@ -14,20 +14,50 @@
 ## Directory 구조
 
 ```bash
+├── .gitiognore
 ├── README.md
 ├── composer.json
-├── ddl.sql
-├── index.php
+├── composer.lock
+├── app
+│   ├── Controllers
+│   │   ├── AuthController.php
+│   │   ├── IndexController.php
+│   │   └── UserController.php
+│   ├── Middlewares
+│   │   ├── AuthMiddleware.php
+│   │   ├── CsrfTokenMiddleware.php
+│   │   └── RequireMiddleware.php
+│   ├── Post.php
+│   ├── Providers
+│   │   ├── DatabaseServiceProvider.php
+│   │   ├── ErrorServiceProvider.php
+│   │   ├── RouteServiceProvider.php
+│   │   ├── SessionServiceProvider.php
+│   │   └── ThemeServiceProvider.php
+│   ├── Services
+│   │   ├── AuthService.php
+│   │   ├── IndexService.php
+│   │   └── UserService.php
+│   └── User.php
+├── bootstrap
+│   └── app.php
+├── public
+│   ├── app.css
+│   ├── app.js
+│   └── index.php
+├── resources
+│   └── views
+│       ├── auth.php
+│       ├── index.php
+│       └── layouts
+│           └── app.php
+├── routes
+│   └── web.php
+├── storage
+    ├── app
+    │   └── images
+    ├── logs
 ```
-
-### 파일 설명
-
-1. composer.json
-    - Composer 정의 파일
-2. ddl.sql
-    - 데이터베이스 DDL(Data Definition Language, 데이터 정의어) 파일
-3. index.php
-    - Main 실행 파일
 
 ### 프로그램 실행 방법
 
@@ -37,3 +67,42 @@
    # cd {WORKSPACE}
    # php -S localhost:{PORT} -t public
    ```
+   
+### MariaDB DDL
+```mysql
+DROP TABLE sessions;
+DROP TABLE users;
+DROP TABLE posts;
+COMMIT;
+
+CREATE TABLE IF NOT EXISTS sessions
+(
+    id         VARCHAR(255) PRIMARY KEY COMMENT 'Session 아이디',
+    payload    TEXT COMMENT 'Session 정보',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '등록일시',
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '수정일시'
+    );
+
+CREATE TABLE IF NOT EXISTS users
+(
+    id         INT AUTO_INCREMENT PRIMARY KEY COMMENT '회원 고유 일련번호',
+    email      VARCHAR(255) UNIQUE NOT NULL COMMENT '이메일',
+    password   VARCHAR(255)        NOT NULL COMMENT '비밀번호',
+    username   VARCHAR(50) COMMENT '이름',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '등록일시',
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '수정일시'
+    );
+
+CREATE TABLE IF NOT EXISTS posts
+(
+    id         INT AUTO_INCREMENT PRIMARY KEY COMMENT '게시글 고유 일련번호',
+    user_id    INT DEFAULT NULL COMMENT '회원 고유 일련번호',
+    title      VARCHAR(255) NOT NULL COMMENT '제목',
+    content    TEXT COMMENT '내용',
+    created_at TIMESTAMP DEFAULT CURRENT_TIME COMMENT '등록일시',
+    updated_at TIMESTAMP DEFAULT CURRENT_TIME ON UPDATE CURRENT_TIMESTAMP COMMENT '수정일시',
+    CONSTRAINT posts_fk1_user_id FOREIGN KEY (user_id) REFERENCES users (id)
+    );
+
+COMMIT;
+```
