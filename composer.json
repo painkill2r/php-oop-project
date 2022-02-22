@@ -5,6 +5,6 @@
     }
   },
   "require": {
-    "painkill2r/inflearn-lecture-lib": "0.0.2"
+    "painkill2r/inflearn-lecture-lib": "0.0.3"
   }
 }
