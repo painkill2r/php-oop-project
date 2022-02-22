@@ -21,7 +21,9 @@ class AuthController
             "password" => FILTER_DEFAULT
         ]));
 
-        return AuthService::login($email, $password) ? header("Location: /") : header("Location: " . $_SERVER['HTTP_REFERER']);
+        return AuthService::login($email, $password)
+            ? header("Location: /")
+            : header("Location: " . $_SERVER['HTTP_REFERER']);
     }
 
     public static function logout()

@@ -18,7 +18,8 @@ class AuthService
 
     public static function logout()
     {
-        //session_unset();
+        session_unset();
+
         return session_destroy();
     }
 }
