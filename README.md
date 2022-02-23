@@ -14,14 +14,16 @@
 ## Directory 구조
 
 ```bash
-├── .gitiognore
+├── .gitignore
 ├── README.md
 ├── composer.json
 ├── composer.lock
 ├── app
 │   ├── Controllers
 │   │   ├── AuthController.php
+│   │   ├── ImageController.php
 │   │   ├── IndexController.php
+│   │   ├── PostController.php
 │   │   └── UserController.php
 │   ├── Middlewares
 │   │   ├── AuthMiddleware.php
@@ -36,7 +38,9 @@
 │   │   └── ThemeServiceProvider.php
 │   ├── Services
 │   │   ├── AuthService.php
+│   │   ├── ImageService.php
 │   │   ├── IndexService.php
+│   │   ├── PostService.php
 │   │   └── UserService.php
 │   └── User.php
 ├── bootstrap
@@ -49,14 +53,18 @@
 │   └── views
 │       ├── auth.php
 │       ├── index.php
-│       └── layouts
-│           └── app.php
+│       ├── layouts
+│       │   └── app.php
+│       ├── post.php
+│       └── read.php
 ├── routes
+│   ├── api.php
 │   └── web.php
 ├── storage
     ├── app
     │   └── images
     ├── logs
+    └── sessions
 ```
 
 ### 프로그램 실행 방법
