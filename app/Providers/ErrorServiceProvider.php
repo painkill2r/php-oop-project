@@ -13,7 +13,7 @@ class ErrorServiceProvider extends ServiceProvider
         });
 
         \set_exception_handler(function ($e) {
-            error_log($e . PHP_EOL, 3, dirname(__DIR__, 2) . "/storage/logs/log_" . date("Ymd") . "log");
+            error_log($e . PHP_EOL, 3, dirname(__DIR__, 2) . "/storage/logs/log_" . date("Ymd") . ".log");
         });
     }
 }
