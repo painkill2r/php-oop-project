@@ -7,7 +7,7 @@ use App\Post;
 class PostService
 {
     /**
-     * 글 등록
+     * 글 등록 메소드
      *
      * @param object $post 글 객체
      * @return mixed
@@ -18,7 +18,7 @@ class PostService
     }
 
     /**
-     * 글 수정
+     * 글 수정 메소드
      *
      * @param object $post 글 객체
      * @return mixed
@@ -29,7 +29,7 @@ class PostService
     }
 
     /**
-     * 글 삭제
+     * 글 삭제 메소드
      *
      * @param object $post 글 객체
      * @return mixed

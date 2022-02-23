@@ -61,11 +61,11 @@ class PostController
     public static function edit($id)
     {
         if ($post = Post::get($id)) {
-            $post->isOwner() && Theme::view("post", [
-                "post" => $post,
-                "requestUrl" => "/posts/" . $post->id,
-                "method" => "patch"
-            ]);
+            return $post->isOwner() && Theme::view("post", [
+                    "post" => $post,
+                    "requestUrl" => "/posts/" . $post->id,
+                    "method" => "patch"
+                ]);
         }
 
         return http_response_code(404);
