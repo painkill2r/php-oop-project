@@ -11,7 +11,7 @@ class AuthService
     {
         if ($user = current(Adaptor::getAll("SELECT * FROM users WHERE email = ?", [$email], \App\User::class))) {
             if (\password_verify($password, $user->password)) {
-                return $_SERVER['user'] = $user;
+                return $_SESSION['user'] = $user;
             }
         }
     }
