@@ -9,6 +9,6 @@ class DatabaseServiceProvider extends ServiceProvider
 {
     public static function register()
     {
-        Adaptor::setup("mysql:host=58.151.141.250;port=3306;dbname=oopproject", "oopproject", "oopproject123~");
+        Adaptor::setup("mysql:host=127.0.0.1;port=3306;dbname=phpblog", "phpblog", "phpblog");
     }
 }
