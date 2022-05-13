@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "261ebfb56a5997fba4729344d2f6522c",
+    "content-hash": "c5aed8fb7cebb9f4c3f0cd1c60c2b3fe",
     "packages": [
         {
             "name": "painkill2r/inflearn-lecture-lib",
-            "version": "0.0.3",
+            "version": "0.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/painkill2r/php-oop-my-framework.git",
-                "reference": "c25099f33232b7caa41ad38d406d13c45688e9a8"
+                "reference": "b6e2c0aadbb311efa7aca752d239d5d02c17e1e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/painkill2r/php-oop-my-framework/zipball/c25099f33232b7caa41ad38d406d13c45688e9a8",
-                "reference": "c25099f33232b7caa41ad38d406d13c45688e9a8",
+                "url": "https://api.github.com/repos/painkill2r/php-oop-my-framework/zipball/b6e2c0aadbb311efa7aca752d239d5d02c17e1e3",
+                "reference": "b6e2c0aadbb311efa7aca752d239d5d02c17e1e3",
                 "shasum": ""
             },
             "type": "library",
@@ -39,9 +39,9 @@
             "description": "This is a Simple PHP micro framework",
             "support": {
                 "issues": "https://github.com/painkill2r/php-oop-my-framework/issues",
-                "source": "https://github.com/painkill2r/php-oop-my-framework/tree/v0.0.3"
+                "source": "https://github.com/painkill2r/php-oop-my-framework/tree/v0.0.4"
             },
-            "time": "2022-02-22T13:47:44+00:00"
+            "time": "2022-05-13T10:08:43+00:00"
         }
     ],
     "packages-dev": [],
