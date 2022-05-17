@@ -75,8 +75,41 @@
    # cd {WORKSPACE}
    # php -S localhost:{PORT} -t public
    ```
+2. Apache 웹 서버 사용
+    - Version: 2.4.551
+    - `Apache 설정(예. httpd.conf)` 또는 `.htaccess` 파일에 아래 설정을 추가
+        * 웹 서버에서 라우팅을 동작시킬 때는, 모든 라우트에 대해서 하나의 리퀘스트 경로로 인식하도록 설정해줄 필요가 있음.
+        * 아래의 코드는 Laravel 프로젝트에 있는 웹서버 설정, .htaccess 파일을 가져온 것입니다. 모든 요청이 index.php(/) 로 인식해야 라우트가 동작함.
+   ```bash
+   # ... Apache settings ...
    
+   <IfModule mod_rewrite.c>
+      <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+      </IfModule>
+
+      RewriteEngine On
+
+      # Handle Authorization Header
+      RewriteCond %{HTTP:Authorization} .
+      RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+      # Redirect Trailing Slashes If Not A Folder...
+      RewriteCond %{REQUEST_FILENAME} !-d
+      RewriteCond %{REQUEST_URI} (.+)/$
+      RewriteRule ^ %1 [L,R=301]
+
+      # Send Requests To Front Controller...
+      RewriteCond %{REQUEST_FILENAME} !-d
+      RewriteCond %{REQUEST_FILENAME} !-f
+      RewriteRule ^ index.php [L]
+   </IfModule>
+   
+   # ... Apache settings ...
+   ```
+
 ### MariaDB DDL
+
 ```mysql
 DROP TABLE sessions;
 DROP TABLE users;
@@ -89,7 +122,7 @@ CREATE TABLE IF NOT EXISTS sessions
     payload    TEXT COMMENT 'Session 정보',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '등록일시',
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '수정일시'
-    );
+);
 
 CREATE TABLE IF NOT EXISTS users
 (
@@ -99,18 +132,18 @@ CREATE TABLE IF NOT EXISTS users
     username   VARCHAR(50) COMMENT '이름',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '등록일시',
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '수정일시'
-    );
+);
 
 CREATE TABLE IF NOT EXISTS posts
 (
     id         INT AUTO_INCREMENT PRIMARY KEY COMMENT '게시글 고유 일련번호',
-    user_id    INT DEFAULT NULL COMMENT '회원 고유 일련번호',
+    user_id    INT       DEFAULT NULL COMMENT '회원 고유 일련번호',
     title      VARCHAR(255) NOT NULL COMMENT '제목',
     content    TEXT COMMENT '내용',
     created_at TIMESTAMP DEFAULT CURRENT_TIME COMMENT '등록일시',
     updated_at TIMESTAMP DEFAULT CURRENT_TIME ON UPDATE CURRENT_TIMESTAMP COMMENT '수정일시',
     CONSTRAINT posts_fk1_user_id FOREIGN KEY (user_id) REFERENCES users (id)
-    );
+);
 
 COMMIT;
 ```
